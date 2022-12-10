@@ -1,119 +1,56 @@
-<!DOCTYPE>
-<html>
-    <head>
-       <meta charset="utf-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Crestici Nolici</title>
-        <link href="css/main.css" rel="stylesheet" type="text/css">
-        
-        
-    </head>
-    <body>
-        <div class="wrapper">
-          <div class="content">
-          <div class="container">
-           <div class="difficult">
-                        <div class="difficult__row">
-                         <div class="difficult__body">
-                          <div class="difficult__title">
-                           <div class="difficult__arrow"><img class="img" src="img/arow__down.png" alt=""></div>
-                            <div class="difficult__name">Play against a friend</div>
-                            </div>
-                            </div>
-                            <div class="share">
-                            <img class="img" src="img/share.png" alt="">
-                         </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+    <link href="main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+   <div class="wrapper">
+       <div class="header">
+           <div class="container">
+               <div class="header__row">
+                  <div class="header__menu__row">
+                      <div class="menu__title">Game</div>
+                      <div class="menu__seting">
+                        <div class="lang">
+                            <div class="lang__icon"><img class="picture" src="img/set.png" alt=""></div>
+                            <div class="lang__text">language</div>
                         </div>
-                </div>
-                <div class="game">
-                    <div class="score">
-                        <div class="score__row">
-                           <div class="score__player">
-                            <div class="score__icon"><img class="img" src="img/cross.png" alt=""></div>
-                            <div class="score__score"></div>
-                               </div>
-                               <div class="score__player1">
-                            <div class="score__icon"><img src="img/circle.png" alt=""></div>
-                            <div class="score__score"></div>
-                               </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="title__game">
-                    <div class="text"> Start game or select player</div>
-                </div>
-                <div class="field">
-                   <div class="field__row">
-                   <div class="first">
-                   <div class="column">
-                       <div class="cell">
-                           <div class="cell__crest"><img class="img" src="img/cross.png" alt=""></div>
-                           <div class="cell__circle"><img  src="img/circle.png" alt=""></div>
-                       </div>
-                   </div>
-                    <div class="column">
-                       <div class="cell2">
-                           <div class="cell__crest2"><img class="img" src="img/cross.png" alt=""></div>
-                           <div class="cell__circle2"><img  src="img/circle.png" alt=""></div>
-                       </div>
-                   </div>
-                    <div class="colum">
-                       <div class="cell3">
-                           <div class="cell__crest3"><img class="img" src="img/cross.png" alt=""></div>
-                           <div class="cell__circle3"><img  src="img/circle.png" alt=""></div>
-                       </div>
-                   </div>
-                    </div>
-                    
-                    <div class="first">
-                    <div class="column">
-                       <div class="cell4">
-                           <div class="cell__crest4"><img class="img" src="img/cross.png" alt=""></div>
-                           <div class="cell__circle4"><img  src="img/circle.png" alt=""></div>
-                       </div>
-                   </div>
-                    <div class="column">
-                       <div class="cell5">
-                           <div class="cell__crest5"><img class="img" src="img/cross.png" alt=""></div>
-                           <div class="cell__circle5"><img src="img/circle.png" alt=""></div>
-                       </div>
-                   </div>
-                    <div class="colum">
-                       <div class="cell6">
-                           <div class="cell__crest6"><img class="img" src="img/cross.png" alt=""></div>
-                           <div class="cell__circle6"><img  src="img/circle.png" alt=""></div>
-                       </div>
-                   </div>
-                   </div>
+                      </div>
+                  </div>
                    
-                   <div class="first"> 
-                    <div class="column">
-                       <div class="cell7">
-                           <div class="cell__crest7"><img class="img" src="img/cross.png" alt=""></div>
-                           <div class="cell__circle7"><img src="img/circle.png" alt=""></div>
-                       </div>
+               </div>
+           </div>
+       </div>
+       <div class="content">
+           <div class="container">
+              <div class="content__title">Noughts and Crosses</div>
+               <div class="player__row">
+                   <div class="player" id="first">
+                       <div class="player__text"><img class="picture"src="img/crest.png" alt=""></div>
+                       <div class="player__score"></div>
                    </div>
-                    <div class="column">
-                       <div class="cell8">
-                           <div class="cell__crest8"><img class="img" src="img/cross.png" alt=""></div>
-                           <div class="cell__circle8"><img src="img/circle.png" alt=""></div>
-                       </div>
+                   <div class="player" id="second">
+                       <div class="player__text"><img class="picture" src="img/zero.jpg" alt=""></div>
+                       <div class="player__score1"></div>
                    </div>
-                    <div class="colum">
-                       <div class="cell9">
-                           <div class="cell__crest9"><img class="img" src="img/cross.png" alt=""></div>
-                           <div class="cell__circle9"><img src="img/circle.png" alt=""></div>
-                       </div>
+               </div>
+               <div class="field">
+                   <div id="rows" class="field__row">
+                       
                    </div>
-                   </div>
-                    </div>
-                </div>
-                <div class="subfield">
-                    <div class="subfield__text">Restart game</div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <script src="js/main.js"></script>
-    </body>
+               </div>
+               
+           </div>
+       </div>
+       <div class="footer">
+          <div class="footer__row">
+              <div class="button"><button>Restart Game</button></div>
+          </div>
+           
+       </div>
+   </div>
+    <script src="js/main.js"></script>
+</body>
 </html>

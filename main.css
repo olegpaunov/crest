@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+body,html{
+    padding: 10px;
+    height: 100%;
+    color: #ffffff;
+    font-family: monospace;
+    text-transform: uppercase;
+    font-size: 20px;
+    background: #00AB8E;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+.wrapper{
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    padding: 30px 30px;
+}
+.content{
+    flex: 1 1 auto;
+}
+.content__title{
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+    font-size: 30px;
+}
+.player__row{
+    display: flex;
+    justify-content: space-around;
+    margin:  0 0 50px 0;
+}
+.player{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 30px;
+    color: #000000;
+    width: 300px;
+    height: 50px;
+    border: 4px gray solid;
+    border-bottom: none;
+    background: #ffffff;
+}
+.menu__title{
+    font-size: 40px;
+    letter-spacing: 5px;
+}
+.header__menu__row{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.lang{
+    display: flex;
+    align-items: center;
+    
+}
+.lang__text{
+    margin: 0 0 0 10px;
+}
+.picture{
+    width: 40px;
+    height: 40px;
+}
+.pictures{
+    padding: 55px;
+    width: 40px;
+    height: 40px;
+}
+.footer{
+    margin: 50px 0 0 0;
+}
+.footer__row{
+    display: flex;
+    justify-content: center;
+}
+button{
+    align-items: center;
+    width: 500px;
+    text-transform: uppercase;
+    font-size: 30px;   
+    font-family: monospace;
+    letter-spacing: 2px;
+    height: 70px;
+    border-radius: 15px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;   
+}
+.field{
+    margin: 0 0 350px 0;
+}
+.field__row{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 600px;
+    margin: 50px 0;
+    margin: 0 auto;
+    height: 50px;
+}
+.element{
+    flex: 0 1 25%;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    height: 120px;
+    border: 1px #ffffff solid;    
+    display:flex;
+}
+.show{
+    background: blue;
+}
+.active{
+    transition: 0.4s;
+    border-bottom: 3px solid #000000;
+}
