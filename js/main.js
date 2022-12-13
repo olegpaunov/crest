@@ -7,6 +7,7 @@
     const scoreSecond = player.querySelector('.player__score1');
     let scoreF=0;
     let scoreS=0;
+    const restartGame = document.querySelector('.button');
 
 for(let i=0;i<9;i++){
     const wrapper = document.createElement('div');
@@ -139,7 +140,7 @@ function win(){
 
 //restart game
 
-function restart(a,b){
+function restart(){
     if(firstPlayer.classList.contains('win')){
         firstPlayer.classList.remove('active');
         secondPlayer.classList.remove('active');
@@ -173,17 +174,43 @@ function restart(a,b){
 
 //score
 
-function count(){   
+function count(){ 
     scoreFirst.innerHTML=`${scoreF}`;
     scoreSecond.innerHTML=`${scoreS}`;
     if(firstPlayer.classList.contains('win')){
         scoreFirst.innerHTML=`${++scoreF}`;
         firstPlayer.classList.remove('win');
+        console.log(scoreF);
+        
     }if(secondPlayer.classList.contains('win')){
         scoreSecond.innerHTML=`${++scoreS}`;
        secondPlayer.classList.remove('win');
     }
+    
 }
+
+//restart game
+
+restartGame.addEventListener('click',function(e){
+    firstPlayer.classList.contains('win')
+        firstPlayer.classList.remove('active');
+        secondPlayer.classList.remove('active');
+        ChangeOne=0;
+        elements[0].innerHTML=``;
+        elements[1].innerHTML=``;
+        elements[2].innerHTML=``;
+        elements[3].innerHTML=``;
+        elements[4].innerHTML=``;
+        elements[5].innerHTML=``;
+        elements[6].innerHTML=``;
+        elements[7].innerHTML=``;
+        elements[8].innerHTML=``;
+        scoreF=0;
+        scoreS=0;
+});
+
+
+
 
 
 
