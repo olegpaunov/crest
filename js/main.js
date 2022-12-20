@@ -6,16 +6,18 @@
     const scoreFirst = player.querySelector('.player__score');
     const scoreSecond = player.querySelector('.player__score1');
     const restartGame = document.querySelector('.button');  
+    const dwC = document.querySelector('.win__Crest');
+    const dwN = document.querySelector('.win__Nought');
     let gameStatus=false;
     let scoreF=0;
     let scoreS=0;
     let busy =true;
-    
 
 //create field
 
 for(let i=0;i<9;i++){
     const wrapper = document.createElement('div');
+    wrapper.setAttribute('data-id', i);
     wrapper.classList.add('element');
     field.append(wrapper);
 }
@@ -23,6 +25,7 @@ for(let i=0;i<9;i++){
 count();
 
 //chose move
+
 player.addEventListener('click', function(s){
     const targets = s.target;
            if(gameStatus==false){
@@ -34,7 +37,6 @@ player.addEventListener('click', function(s){
     }
     gameStatus=true;
 });
-
 
 //change player move
 
@@ -52,128 +54,95 @@ function players(i){
         }
     }
 
-//massive of elements
+   //massive of elements
 
     const elements = [...field.querySelectorAll('.element')]; 
-    
+    let crest=[];
+    let zero=[];
     const arr=[
-            [elements[0],elements[1],elements[2]],
-            [elements[3],elements[4],elements[5]],
-            [elements[6],elements[7],elements[8]],
-            [elements[0],elements[3],elements[6]],
-            [elements[1],elements[4],elements[7]],
-            [elements[2],elements[5],elements[8]],
-            [elements[0],elements[4],elements[8]],
-            [elements[2],elements[4],elements[6]]
-    ];  
+            [0,1,2],
+        
+            [3,4,5],
+        
+            [6,7,8],
+        
+            [0,4,8],
+        
+            [1,4,6],
+        
+            [0,3,6],
+        
+            [1,4,7],
+        
+            [2,5,8]
+    ]; 
+    
 
 //field elements
 
-field.addEventListener('click', function(element){
-    const target = element.target;
-  
-    if(!target.classList.contains('busy')){
-        
-         target.classList.add('busy');
-        
-        if(ChangeOne==0){
-                target.innerHTML = `<img src="img/crest.png" class="pictures busy" alt="">`;
-                    firstPlayer.classList.remove('active');
-                    secondPlayer.classList.add('active');
-                    ChangeOne++;  
+field.addEventListener('click', function(e){
+    const target = e.target;
+    
+        if(target.innerHTML==``){
+            if(ChangeOne==0){
+               crest.push(target.dataset.id);
+                target.innerHTML=`X`;
+                firstPlayer.classList.remove('active');
+                secondPlayer.classList.add('active');
+                ChangeOne++;
+                
             }else if(ChangeOne==1){
-                target.innerHTML = `<img src="img/zero.jpg" class="pictures busy" alt="">`;
-                 firstPlayer.classList.add('active');
+                zero.push(target.dataset.id);
+                target.innerHTML='O';
+                firstPlayer.classList.add('active');
                 secondPlayer.classList.remove('active');
-                ChangeOne--; 
+                ChangeOne--;
+            }    
+        }
+    checkWin(crest,zero);
+    });
+
+// checkWin
+            
+function checkWin(crest,zero){
+    for(let i=0; i<arr.length; i++){
+            let crestCount=0;
+            let zeroCount=0;
+        for(let j=0; j<arr[i].length; j++){
+            
+                for(let k=0; k<crest.length; k++){
+                    if(crest[k]==arr[i][j]){
+                        crestCount++;
+                    if(crestCount>2){
+                        dW(crest);
+                        resetElements();
+                    }
+                }
             }
-        win();
-    }
-});
-
-//win
-
-function win(a){
-    let winCrosses=0;
-    let winNoughts=0;
-    if(arr[0][0].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[0][1].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[0][2].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">`){
-        winNoughts++;
-        secondPlayer.classList.add('win');
-        restart(a);
-    }if(arr[1][0].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[1][1].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[1][2].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">`){
-        winNoughts++
-        secondPlayer.classList.add('win');
-        restart(a);
-    }if(arr[2][0].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[2][1].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[2][2].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">`){
-        winNoughts++
-        secondPlayer.classList.add('win');
-        restart(a);
-    }if(arr[3][0].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[3][1].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[3][2].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">`){
-        winNoughts++
-        secondPlayer.classList.add('win');
-       restart(a);
-    }if(arr[4][0].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[4][1].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[4][2].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">`){
-        winNoughts++
-        secondPlayer.classList.add('win');
-        restart(a);
-    }if(arr[5][0].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[5][1].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[5][2].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">`){
-        winNoughts++
-        secondPlayer.classList.add('win');
-       restart(a);
-    }if(arr[6][0].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[6][1].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[6][2].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">`){
-        winNoughts++
-        secondPlayer.classList.add('win');
-        restart(a);
-    }if(arr[7][0].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[7][1].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">` && arr[7][2].innerHTML==`<img src="img/zero.jpg" class="pictures busy" alt="">`){    
-        winNoughts++
-        secondPlayer.classList.add('win');
-        restart(a);
-    }
-    //CROSESS
-    if(arr[0][0].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[0][1].innerHTML ==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[8][2].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">`){
-        winCrosses++;
-        firstPlayer.classList.add('win');
-        restart(a);
-    }if(arr[1][0].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[1][1].innerHTML ==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[1][2].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">`){
-        winCrosses++;
-        firstPlayer.classList.add('win');
-        restart(a);
-    }if(arr[2][0].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[2][1].innerHTML ==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[2][2].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">`){
-        winCrosses++;
-        firstPlayer.classList.add('win');
-        restart(a);
-    }if(arr[3][0].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[3][1].innerHTML ==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[3][2].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">`){
-        winCrosses++;
-        firstPlayer.classList.add('win');
-        restart(a);
-    }if(arr[4][0].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[4][1].innerHTML ==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[4][2].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">`){
-        winCrosses++;
-        firstPlayer.classList.add('win');
-        restart(a);
-    }if(arr[5][0].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[5][1].innerHTML ==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[5][2].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">`){
-        winCrosses++;
-        firstPlayer.classList.add('win');
-        restart(a);
-    }if(arr[6][0].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[6][1].innerHTML ==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[6][2].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">`){
-        winCrosses++;
-        firstPlayer.classList.add('win');
-        restart(a);
-    }if(arr[7][0].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[7][1].innerHTML ==`<img src="img/crest.png" class="pictures busy" alt="">` && arr[7][2].innerHTML==`<img src="img/crest.png" class="pictures busy" alt="">`){
-        winCrosses++;
-        firstPlayer.classList.add('win');
-        restart(a);
+                    for(let z=0; z<zero.length; z++){
+                      if(zero[z]==arr[i][j]){
+                          zeroCount++;
+                          if(zeroCount>2){
+                                  dW(zero);
+                           resetElements();
+                         }
+                  }
+              }
+        }
     }
 }
 
-//restart game
 
-function restart(b){
-    if(firstPlayer.classList.contains('win')){
-        resetElements(b);
-        count();
-    }else if(secondPlayer.classList.contains('win')){
-        resetElements(b);
-        count();
+//
+function dW(dw){
+    if(dw==crest){
+        dwC.classList.add('winner');
+        dwC.classList.add('won');
+        resetElements();
+    }if(dw==zero){
+        dwN.classList.add('winner');
+        dwN.classList.add('won');
+        resetElements();
     }
 }
 
@@ -185,10 +154,11 @@ function resetElements(){
         ChangeOne=0;
         for(let i=0;i<elements.length;i++){
             elements[i].innerHTML=``;
-            elements[i].classList.remove('busy');
         }
+        count();
+        crest=[];
+        zero=[];
         gameStatus=false;
-
 }
 
 //score
@@ -196,20 +166,21 @@ function resetElements(){
 function count(){ 
     scoreFirst.innerHTML=`${scoreF}`;
     scoreSecond.innerHTML=`${scoreS}`;
-    if(firstPlayer.classList.contains('win')){
+    if(dwC.classList.contains('won')){
         scoreFirst.innerHTML=`${++scoreF}`;
-        firstPlayer.classList.remove('win');
-    }if(secondPlayer.classList.contains('win')){
+        dwC.classList.remove('won');
+    }if(dwN.classList.contains('won')){
         scoreSecond.innerHTML=`${++scoreS}`;
-       secondPlayer.classList.remove('win');
+       dwN.classList.remove('won');
     }
-    
 }
 
 //restart game
 
 restartGame.addEventListener('click',function(e){
         resetElements();
+        dwC.classList.remove('winner');
+        dwN.classList.remove('winner');
 });
 
 
