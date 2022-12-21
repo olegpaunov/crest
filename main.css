@@ -11,7 +11,7 @@ body,html{
     font-family: monospace;
     text-transform: uppercase;
     font-size: 20px;
-    background: #00AB8E;
+    background: #00ab8e;
 }
 .container{
     width: 1200px;
@@ -46,7 +46,7 @@ body,html{
     color: #000000;
     width: 300px;
     height: 50px;
-    border: 4px gray solid;
+    border: 4px #808080 solid;
     border-bottom: none;
     background: #ffffff;
 }
@@ -62,7 +62,6 @@ body,html{
 .lang{
     display: flex;
     align-items: center;
-    
 }
 .lang__text{
     margin: 0 0 0 10px;
@@ -119,9 +118,33 @@ button{
     display:flex;
 }
 .show{
-    background: blue;
+    background: #0000ff;
 }
 .active{
     transition: 0.4s;
     border-bottom: 3px solid #000000;
+}
+.win__Crest{
+    display: none;
+}
+.win__Nought{
+    display: none;
+}
+.winner{
+    display: block;
+    transition: 1s;
+    margin: 50px 430px;;
+    width: 350px;
+    height: 200px;
+    color: #000000;
+    font-family: monospace;
+    font-size: 30px;
+    text-transform: uppercase;
+    border-radius: 15px;
+    border: 3px solid #000000;
+    background: #ffffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
 }
