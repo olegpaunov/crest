@@ -2,26 +2,30 @@
     let ChangeOne = 0 ;
     const player = document.querySelector('.player__row');
     const firstPlayer = document.getElementById('first');
+   //все классы которые ты ищешь в js должны иметь добавочное js-
+// к примеру был класс second, стал js-second и так для всех, нужно разделять js и css и в js не использовать классы их css
     const secondPlayer = document.getElementById('second');
     const scoreFirst = player.querySelector('.player__score');
     const scoreSecond = player.querySelector('.player__score1');
-    const restartGame = document.querySelector('.button');  
+    const restartGame = document.querySelector('.button'); 
+// слишком короткое название, вобще не понятно что там, такое ок если оно задекларованно и об этом все знают
     const dwC = document.querySelector('.win__Crest');
     const dwN = document.querySelector('.win__Nought');
     let gameStatus=false;
     let scoreF=0;
     let scoreS=0;
+//busy не использется нужно удалить
     let busy =true;
 
 //create field
-
+// нужно вынести в метод 
 for(let i=0;i<9;i++){
     const wrapper = document.createElement('div');
     wrapper.setAttribute('data-id', i);
     wrapper.classList.add('element');
     field.append(wrapper);
 }
-
+// count это когда идёт счёт чего то, тут ничего не считаешь
 count();
 
 //chose move
@@ -39,7 +43,7 @@ player.addEventListener('click', function(s){
 });
 
 //change player move
-
+// выровнять нужно
 function players(i){
         if(i==0){
             firstPlayer.classList.add('active');
@@ -55,7 +59,29 @@ function players(i){
     }
 
    //massive of elements
+// все обявления желательно делать вверху, после этого должны идти методы а потом уже вызовы функций
 
+/*
+for examples
+
+const arr = [];
+const element = document.querySelector('elemtn');
+
+function test() {
+    arr.push(1)
+    return: arr;
+}
+
+test();
+
+element.addEventListener('click', () => {
+    //do anything
+})
+
+
+ну и в таком порядке дальше формровать код.
+
+*/
     const elements = [...field.querySelectorAll('.element')]; 
     let crest=[];
     let zero=[];
@@ -82,7 +108,7 @@ function players(i){
 
 field.addEventListener('click', function(e){
     const target = e.target;
-    
+    // не правильное использование ковычек, `` https://mate-academy.github.io/style-guides/javascript.html#6-strings 
         if(target.innerHTML==``){
             if(ChangeOne==0){
                crest.push(target.dataset.id);
