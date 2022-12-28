@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Game</title>
     <link href="main.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width">
 </head>
 <body>
    <div class="wrapper">
@@ -26,17 +27,20 @@
            <div class="container">
               <div class="content__title">Noughts and Crosses</div>
                <div class="player__row">
+                 <div class="win__Crest">Crest Win!</div>
+                  <div class="win__Nought">Nought Win!</div>
                    <div class="player" id="first">
                        <div class="player__text">
                        <img 
                        class="picture"
                        src="img/crest.png" 
                        alt=""
-                       >
+                       >    
                        </div>
                        <div class="player__score"></div>
                    </div>
                    <div class="player" id="second">
+                      
                        <div class="player__text">
                        <img 
                        class="picture" 
@@ -50,18 +54,19 @@
                <div class="field">
                    <div id="rows" class="field__row">
                    </div>
-                   <div class="win__Crest">Crest Win!</div>
-                       <div class="win__Nought">Nought Win!</div>
                </div>
                
            </div>
        </div>
        <div class="footer">
-          <div class="footer__row">
+         <div class="container">
+             <div class="footer__row">
               <div class="button">
               <button>Restart Game</button>
               </div>
           </div>
+         </div>
+          
            
        </div>
    </div>
