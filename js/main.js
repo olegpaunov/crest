@@ -1,62 +1,17 @@
     const field = document.getElementById('rows');
     let ChangeOne = 0 ;
-    const player = document.querySelector('.player__row');
-    const firstPlayer = document.getElementById('first');
-    const secondPlayer = document.getElementById('second');
-    const scoreFirst = player.querySelector('.player__score');
-    const scoreSecond = player.querySelector('.player__score1');
-    const restartGame = document.querySelector('.button');  
-    const dwC = document.querySelector('.win__Crest');
-    const dwN = document.querySelector('.win__Nought');
+    const js__player = document.querySelector('.player__row');
+    const js__firstPlayer = document.getElementById('first');
+    const js__secondPlayer = document.getElementById('second');
+    const js__scoreFirst = js__player.querySelector('.player__score');
+    const js__scoreSecond = js__player.querySelector('.player__score1');
+    const js__restartGame = document.querySelector('.button');  
+    const js__winCrest = document.querySelector('.win__Crest');
+    const js__winNought = document.querySelector('.win__Nought');
     let gameStatus=false;
     let scoreF=0;
     let scoreS=0;
     let busy =true;
-
-//create field
-
-for(let i=0;i<9;i++){
-    const wrapper = document.createElement('div');
-    wrapper.setAttribute('data-id', i);
-    wrapper.classList.add('element');
-    field.append(wrapper);
-}
-
-count();
-
-//chose move
-
-player.addEventListener('click', function(s){
-    const targets = s.target;
-           if(gameStatus==false){
-        if(targets==firstPlayer){
-            players(0);
-        }else if(targets==secondPlayer){
-             players(1);
-        }
-    }
-    gameStatus=true;
-});
-
-//change player move
-
-function players(i){
-        if(i==0){
-            firstPlayer.classList.add('active');
-            secondPlayer.classList.remove('active');
-            ChangeOne = i;
-            i++
-        }else if(i==1){
-            firstPlayer.classList.remove('active');
-            secondPlayer.classList.add('active');
-            ChangeOne = i;
-            i--;    
-        }
-    }
-
-   //massive of elements
-
-    const elements = [...field.querySelectorAll('.element')]; 
     let crest=[];
     let zero=[];
     const arr=[
@@ -68,7 +23,7 @@ function players(i){
         
             [0,4,8],
         
-            [1,4,6],
+            [2,4,6],
         
             [0,3,6],
         
@@ -76,31 +31,38 @@ function players(i){
         
             [2,5,8]
     ]; 
-    
+//this function help variable elements
+    createField();
+    const elements = [...field.querySelectorAll('.element')]; 
 
-//field elements
+//create field
+function createField(){
+    for(let i=0;i<9;i++){
+    const wrapper = document.createElement('div');
+    wrapper.setAttribute('data-id', i);
+    wrapper.classList.add('element');
+    field.append(wrapper);
+    }
+    count();
+}
 
-field.addEventListener('click', function(e){
-    const target = e.target;
-    
-        if(target.innerHTML==``){
-            if(ChangeOne==0){
-               crest.push(target.dataset.id);
-                target.innerHTML=`X`;
-                firstPlayer.classList.remove('active');
-                secondPlayer.classList.add('active');
-                ChangeOne++;
-                
-            }else if(ChangeOne==1){
-                zero.push(target.dataset.id);
-                target.innerHTML='O';
-                firstPlayer.classList.add('active');
-                secondPlayer.classList.remove('active');
-                ChangeOne--;
-            }    
+//change player move
+ 
+function players(i){
+        if(i==0){
+            js__firstPlayer.classList.add('active');
+            js__secondPlayer.classList.remove('active');
+            ChangeOne = i;
+            i++
+        }else if(i==1){
+            js__firstPlayer.classList.remove('active');
+            js__secondPlayer.classList.add('active');
+            ChangeOne = i;
+            i--;    
         }
-    checkWin(crest,zero);
-    });
+    }
+
+
 
 // checkWin
             
@@ -109,12 +71,11 @@ function checkWin(crest,zero){
             let crestCount=0;
             let zeroCount=0;
         for(let j=0; j<arr[i].length; j++){
-            
                 for(let k=0; k<crest.length; k++){
                     if(crest[k]==arr[i][j]){
                         crestCount++;
                     if(crestCount>2){
-                        dW(crest);
+                        winner(crest);
                         resetElements();
                     }
                 }
@@ -123,7 +84,7 @@ function checkWin(crest,zero){
                       if(zero[z]==arr[i][j]){
                           zeroCount++;
                           if(zeroCount>2){
-                                  dW(zero);
+                                  winner(zero);
                            resetElements();
                          }
                   }
@@ -132,16 +93,16 @@ function checkWin(crest,zero){
     }
 }
 
+//winner
 
-//
-function dW(dw){
-    if(dw==crest){
-        dwC.classList.add('winner');
-        dwC.classList.add('won');
+function winner(Winner){
+    if(Winner==crest){
+        js__winCrest.classList.add('winner');
+        js__winCrest.classList.add('won');
         resetElements();
-    }if(dw==zero){
-        dwN.classList.add('winner');
-        dwN.classList.add('won');
+    }if(Winner==zero){
+        js__winNought.classList.add('winner');
+        js__winNought.classList.add('won');
         resetElements();
     }
 }
@@ -149,42 +110,79 @@ function dW(dw){
 //resetElements function
 
 function resetElements(){
-        firstPlayer.classList.remove('active');
-        secondPlayer.classList.remove('active');
+        crest=[];
+        zero=[];
         ChangeOne=0;
+        gameStatus=false;
+        count();
+        js__firstPlayer.classList.remove('active');
+        js__secondPlayer.classList.remove('active');
         for(let i=0;i<elements.length;i++){
             elements[i].innerHTML=``;
         }
-        count();
-        crest=[];
-        zero=[];
-        gameStatus=false;
 }
 
 //score
 
 function count(){ 
-    scoreFirst.innerHTML=`${scoreF}`;
-    scoreSecond.innerHTML=`${scoreS}`;
-    if(dwC.classList.contains('won')){
-        scoreFirst.innerHTML=`${++scoreF}`;
-        dwC.classList.remove('won');
-    }if(dwN.classList.contains('won')){
-        scoreSecond.innerHTML=`${++scoreS}`;
-       dwN.classList.remove('won');
+    js__scoreFirst.innerHTML=`${scoreF}`;
+    js__scoreSecond.innerHTML=`${scoreS}`;
+    if(js__winCrest.classList.contains('won')){
+        js__scoreFirst.innerHTML=`${++scoreF}`;
+        js__winCrest.classList.remove('won');
+    }if(js__winNought.classList.contains('won')){
+        js__scoreSecond.innerHTML=`${++scoreS}`;
+       js__winNought.classList.remove('won');
     }
 }
 
-//restart game
 
-restartGame.addEventListener('click',function(e){
-        resetElements();
-        dwC.classList.remove('winner');
-        dwN.classList.remove('winner');
+//field elements
+
+field.addEventListener('click', function(e){
+    const target = e.target;
+        if(target.innerHTML==''){
+            if(ChangeOne==0){
+                js__winCrest.classList.remove('winner');
+                js__winNought.classList.remove('winner');
+               crest.push(target.dataset.id);
+                target.innerHTML='X';
+                js__firstPlayer.classList.remove('active');
+                js__secondPlayer.classList.add('active');
+                ChangeOne++;
+            }else if(ChangeOne==1){
+                js__winCrest.classList.remove('winner');
+                js__winNought.classList.remove('winner');
+                zero.push(target.dataset.id);
+                target.innerHTML='O';
+                js__firstPlayer.classList.add('active');
+                js__secondPlayer.classList.remove('active');
+                ChangeOne--;
+            }    
+        }
+    checkWin(crest,zero);
+    });
+
+//chose move
+
+js__player.addEventListener('click', function(s){
+    const targets = s.target;
+        js__winCrest.classList.remove('winner');
+        js__winNought.classList.remove('winner');
+           if(gameStatus==false){
+        if(targets==js__firstPlayer){
+            players(0);
+        }else if(targets==js__secondPlayer){
+             players(1);
+        }
+    }
+    gameStatus=true;
 });
 
+//restart game
 
-
-
-
-
+js__restartGame.addEventListener('click',function(e){
+        resetElements();
+        js__winCrest.classList.remove('winner');
+        js__winNought.classList.remove('winner');
+});
