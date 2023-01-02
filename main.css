@@ -197,8 +197,9 @@ button{
     justify-content: center;   
 }
     .winner{
-        width: 100px;
+        width: 600px;
         font-size: 7px;
+        padding:10px;
         height: 40px;
     }
     .element{
@@ -236,6 +237,7 @@ button{
     .winner{
         height: 60px;
         width: 60px;
+        padding:10px ;
         font-size: 7px;
     }
     
