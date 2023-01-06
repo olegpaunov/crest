@@ -1,299 +1,349 @@
-*{
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-}
+//variables 
+    const field = document.getElementById('field');
 
-body,html{
-    padding: 10px;
-    height: 100%;
-    color: #ffffff;
-    font-family: monospace;
-    text-transform: uppercase;
-    font-size: 20px;
-    background: #00ab8e;
-}
+    let ChangeOne = 0 ;
 
-.container{
-    width: 1400px;
-    margin: 0 auto;
-}
+    const players = document.querySelector('.js-players');
 
-.wrapper{
-    display: flex;
-    min-height: 100%;
-    flex-direction: column;
-    padding: 30px 30px;
-}
+    const firstPlayer = document.getElementById('first');
 
-.content__title{
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
-    font-size: 30px;
-}
+    const secondPlayer = document.getElementById('second');
 
-.player__row{
-    width: auto;
-    display: flex;
-    justify-content: space-around;
-    margin:  0 0 50px 0;
-}
+    const scoreFirst = players.querySelector('.js-scoreFirst');
 
-.player{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    border-radius: 30px;
-    color: #000000;
-    width: 300px;
-    height: 50px;
-    border: 4px #808080 solid;
-    border-bottom: none;
-    background: #ffffff;
-}
+    const scoreSecond = players.querySelector('.js-scoreSecond');
 
-.menu__title{
-    font-size: 40px;
-    letter-spacing: 5px;
-}
+    const restartGame = document.querySelector('.js-restartGame');  
 
-.header__menu__row{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
+    const winCrest = document.querySelector('.js-crest');
 
-.lang{
-    display: flex;
-    align-items: center;
-}
-
-.lang__text{
-    margin: 0 0 0 10px;
-}
-
-.picture{
-    width: 40px;
-    height: 40px;
-}
-
-.pictures{
-    padding: 55px;
-    width: 40px;
-    height: 40px;
-}
-
-.footer{
-    margin: 50px 0 0 0;
-}
-
-.footer__row{
-    display: flex;
-    justify-content: center;
-}
-
-.button-restart{
-    align-items: center;
-    width: 500px;
-    text-transform: uppercase;
-    font-size: 30px;   
-    font-family: monospace;
-    letter-spacing: 2px;
-    height: 70px;
-    margin: -50px 0 0 0;
-    border-radius: 15px;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;   
-}
-
-.field{
-    margin: 0 0 350px 0;
-}
-
-.field__row{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 500px;
-    margin: 50px 0;
-    margin: 0 auto;
-    height: 50px;
-}
-
-.element{
-    flex: 0 1 25%;
-    margin: 5px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    height: 110px;
-    border: 1px #ffffff solid;    
-    display:flex;
-}
-
-.show{
-    background: #0000ff;
-}
-
-.active{
-    transition: 0.4s;
-    border-bottom: 3px solid #000000;
-}
-
-.win__crest{
-    display: none;
-}
-
-.win__nought{
-    display: none;
-}
-
-.draw{
-    display: none;
-}
-
-.winner{
-    display: block;
-    margin: 10px 430px;
-    width: 180px;
-    border-radius: 50px;
-    height: 70px;
-    color: #000000;
-    font-family: monospace;
-    font-size: 25px;
-    text-transform: uppercase;
-    border: 3px solid #000000;
-    background: #ffffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-}
-
-@media (max-width:1200px){
+    const winNought = document.querySelector('.js-nought');
     
-    .container{
-        max-width: 900px;
+    const draw = players.querySelector('.js-draw');
+
+    let gameStatus = false;
+
+    let scoreF = 0;
+
+    let scoreS = 0;
+
+    let busy = true;
+
+    const crest = [];
+
+    const zero = [];
+
+    const arr = [
+            [0,1,2],
+        
+            [3,4,5],
+        
+            [6,7,8],
+        
+            [0,4,8],
+        
+            [2,4,6],
+        
+            [0,3,6],
+        
+            [1,4,7],
+        
+            [2,5,8]
+    ]; 
+
+//this function help variable elements
+
+    createField();
+
+    const elements = [...field.querySelectorAll('.element')]; 
+
+//create field
+
+function createField(){
+    
+         for(let i=0; i<9; i++){
+             
+            const wrapper = document.createElement('div');
+             
+            wrapper.setAttribute('data-id', i);
+             
+            wrapper.classList.add('element');
+             
+            field.append(wrapper);
+             
+         }
+    
+    score();
+    
+}
+
+//change player move
+ 
+function player(i){
+    
+        if(i == 0){
+            
+            firstPlayer.classList.add('active');
+            
+            secondPlayer.classList.remove('active');
+            
+            ChangeOne = i;
+            
+            i++;
+            
+        } else if(i == 1){
+        
+            firstPlayer.classList.remove('active');
+        
+            secondPlayer.classList.add('active');
+        
+            ChangeOne = i;
+        
+            i--;   
+        
+        }
     }
+
+// checkWin
+            
+function checkMove(crest, zero){
     
-    .player{
-        width: 200px;
-        height: 40px;
-    }
-    
-    .button-restart{
-        align-items: center;
-        width: 250px;
-        text-transform: uppercase;
-        font-size: 20px;   
-        font-family: monospace;
-        letter-spacing: 2px;
-        height: 70px;
-        border-radius: 15px;
-        background: #ffffff;
-        display: flex;
-        justify-content: center;   
-    }
-    
-    .winner{
-        margin: 10px 0 0 0;
-        width: 140px;
-        border-radius: 50px;
-        font-size: 20px;
-    }
-    
-    .element{
-        height: 95px;
+    for(let i = 0; i < arr.length; i++){
+        
+            let crestScore=0;
+        
+            let zeroScore=0;
+        
+        for(let j = 0; j < arr[i].length; j++){
+            
+                for(let k=0; k<crest.length; k++){
+                    
+                    if(crest[k]==arr[i][j]){    
+                        
+                            crestScore++;
+                        
+                        if(crestScore>2){
+                        
+                            CheckWin(crest);
+                        
+                            resetElements();
+                        }
+                        
+                    }
+                    
+            }
+            
+                for(let z=0; z<zero.length; z++){
+                        
+                      if(zero[z]==arr[i][j]){
+                          
+                          zeroScore++;
+                          
+                          if(zeroScore>2){
+                              
+                           CheckWin(zero);
+                              
+                           resetElements();
+                              
+                         }
+                          
+                      }
+                        
+              }
+            
+            //Make draw
+            
+             if(zero.length==4){
+                  checkDraw();
+              }
+            
+        }
+        
     }
     
 }
 
-@media (max-width:900px){
+//winner
+
+function CheckWin(winer){
     
-    .container{
-        max-width: 700px;
-        margin: 0 auto;
+    if(winer==crest){
+        
+        winCrest.classList.add('winner');
+        
+        winCrest.classList.add('won');
+        
+        resetElements();
+        
+        return;
+        
     }
     
-    .player{
-        width: 150px;
-        height: 30px;
+    if(winer==zero){
+
+        winNought.classList.add('winner');
+        
+        winNought.classList.add('won');
+        
+        resetElements();
+        
+        return;
+        
     }
     
-    .button-restart{
-        margin: -100px 0 0 0;
-        width: 200px;
-        text-transform: uppercase;
-        font-size: 18px;   
-        font-family: monospace;
-        letter-spacing: 2px;
-        height: 60px;
-        border-radius: 15px;
-        background: #ffffff;
-        display: flex;
-        justify-content: center;   
+    console.log(1);
+    
+}
+
+//resetElements function
+
+function resetElements(){
+    
+        gameStatus = false;
+        
+        ChangeOne = 0;
+    
+        crest.splice(0,5);
+    
+        
+        zero.splice(0,5);
+    
+        score();
+    
+        firstPlayer.classList.remove('active');
+    
+        secondPlayer.classList.remove('active');
+    
+        for(let i=0;i<elements.length;i++){
+            
+            elements[i].innerHTML=``;
+            
+        }
+    
+}
+
+//draw
+
+function checkDraw(){
+    draw.classList.add('winner');
+    resetElements();
+}
+
+//score
+
+function score(){ 
+    
+    scoreFirst.innerHTML=`${scoreF}`;
+    
+    scoreSecond.innerHTML=`${scoreS}`;
+    
+    if(winCrest.classList.contains('won')){
+        
+        scoreFirst.innerHTML=`${++scoreF}`;
+        
+        winCrest.classList.remove('won');
+        
     }
     
-    .winner{
-        margin: 15px 0 0 0;
-        width: 100px;
-        font-size: 10px;
-        height: 40px;
-    }
-    
-    .element{
-        height: 95px;
-    }
-    
-    .field__row{
-        width: 450px;
+    if(winNought.classList.contains('won')){
+        
+        scoreSecond.innerHTML=`${++scoreS}`;
+        
+        winNought.classList.remove('won');
+        
     }
     
 }
 
-@media (max-width:700px){
+//field elements
+
+field.addEventListener('click', function({target}){
     
-    .container{
-        max-width: 500px;
-        margin: 0 auto;
+        if(target.innerHTML==''){
+            
+            if(ChangeOne==0){
+                
+                winCrest.classList.remove('winner');
+                
+                winNought.classList.remove('winner');
+                
+                draw.classList.remove('winner');
+                
+               crest.push(target.dataset.id);
+                
+                target.innerHTML='X';
+                
+                firstPlayer.classList.remove('active');
+                
+                secondPlayer.classList.add('active');
+                
+                ChangeOne++;
+                
+            }else if(ChangeOne==1){
+                
+                winCrest.classList.remove('winner');
+                
+                winNought.classList.remove('winner');
+                
+                draw.classList.remove('winner');
+                
+                zero.push(target.dataset.id);
+                
+                target.innerHTML='O';
+                
+                firstPlayer.classList.add('active');
+                
+                secondPlayer.classList.remove('active');
+                
+                ChangeOne--;
+                
+            }    
+            
+        }
+    
+    checkMove(crest,zero);
+    
+    });
+
+//chose move
+
+players.addEventListener('click', function({target}){
+    
+        winCrest.classList.remove('winner');
+    
+        winNought.classList.remove('winner');
+        
+        draw.classList.remove('winner');
+    
+    if(gameStatus==false){
+               
+        if(target==firstPlayer){
+            
+            player(0);
+            
+        }else if(target==secondPlayer){
+            
+             player(1);
+            
+        }
+               
     }
     
-    .player__row{
-        max-width: 500px;
-    }
+    gameStatus=true;
     
-    .player{
-        width: 100px;
-        height: 30px;
-    }
+});
+
+//restart game
+
+restartGame.addEventListener('click',function(e){
     
-    .field__row{
-        width: 400px;
-    }
+        resetElements();
     
-    .button-restart{
-        margin: -100px 0 0 0;
-        width: 150px;
-        text-transform: uppercase;
-        font-size: 13px;   
-        font-family: monospace;
-        letter-spacing: 2px;
-        height: 50px;
-        border-radius: 20px;
-        background: #ffffff;
-        display: flex;
-        justify-content: center;   
-    }
+        winCrest.classList.remove('winner');
     
-    .winner{
-        height: 50px;
-        margin: 10px 0 0 0;
-        width: 80px;
-        font-size: 10px;
-    }
+        winNought.classList.remove('winner');
+        
+        draw.classList.remove('winner');
     
-}
+});
+
