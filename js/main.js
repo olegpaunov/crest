@@ -1,20 +1,37 @@
-    const field = document.getElementById('rows');
+//variables 
+    const field = document.getElementById('field');
+
     let ChangeOne = 0 ;
-    const js__player = document.querySelector('.player__row');
-    const js__firstPlayer = document.getElementById('first');
-    const js__secondPlayer = document.getElementById('second');
-    const js__scoreFirst = js__player.querySelector('.player__score');
-    const js__scoreSecond = js__player.querySelector('.player__score1');
-    const js__restartGame = document.querySelector('.button');  
-    const js__winCrest = document.querySelector('.win__Crest');
-    const js__winNought = document.querySelector('.win__Nought');
-    let gameStatus=false;
-    let scoreF=0;
-    let scoreS=0;
-    let busy =true;
-    let crest=[];
-    let zero=[];
-    const arr=[
+
+    const players = document.querySelector('.js__players');
+
+    const firstPlayer = document.getElementById('first');
+
+    const secondPlayer = document.getElementById('second');
+
+    const scoreFirst = players.querySelector('.js__scoreFirst');
+
+    const scoreSecond = players.querySelector('.js__scoreSecond');
+
+    const restartGame = document.querySelector('.js__restartGame');  
+
+    const winCrest = document.querySelector('.js__Crest');
+
+    const winNought = document.querySelector('.js__Nought');
+
+    let gameStatus = false;
+
+    let scoreF = 0;
+
+    let scoreS = 0;
+
+    let busy = true;
+
+    const crest = [];
+
+    const zero = [];
+
+    const arr = [
             [0,1,2],
         
             [3,4,5],
@@ -31,158 +48,277 @@
         
             [2,5,8]
     ]; 
+
 //this function help variable elements
+
     createField();
+
     const elements = [...field.querySelectorAll('.element')]; 
 
 //create field
+
 function createField(){
-    for(let i=0;i<9;i++){
-    const wrapper = document.createElement('div');
-    wrapper.setAttribute('data-id', i);
-    wrapper.classList.add('element');
-    field.append(wrapper);
-    }
-    count();
+    
+         for(let i=0;i<9;i++){
+             
+            const wrapper = document.createElement('div');
+             
+            wrapper.setAttribute('data-id', i);
+             
+            wrapper.classList.add('element');
+             
+            field.append(wrapper);
+             
+         }
+    
+    score();
+    
 }
 
 //change player move
  
-function players(i){
+function player(i){
+    
         if(i==0){
-            js__firstPlayer.classList.add('active');
-            js__secondPlayer.classList.remove('active');
+            
+            firstPlayer.classList.add('active');
+            
+            secondPlayer.classList.remove('active');
+            
             ChangeOne = i;
+            
             i++
-        }else if(i==1){
-            js__firstPlayer.classList.remove('active');
-            js__secondPlayer.classList.add('active');
+            
+        } else if(i==1){
+        
+            firstPlayer.classList.remove('active');
+        
+            secondPlayer.classList.add('active');
+        
             ChangeOne = i;
-            i--;    
+        
+            i--;   
+        
         }
     }
-
-
 
 // checkWin
             
 function checkWin(crest,zero){
+    
     for(let i=0; i<arr.length; i++){
-            let crestCount=0;
-            let zeroCount=0;
+        
+            let crestScore=0;
+        
+            let zeroScore=0;
+        
         for(let j=0; j<arr[i].length; j++){
+            
                 for(let k=0; k<crest.length; k++){
-                    if(crest[k]==arr[i][j]){
-                        crestCount++;
-                    if(crestCount>2){
-                        winner(crest);
-                        resetElements();
+                    
+                    if(crest[k]==arr[i][j]){    
+                        
+                            crestScore++;
+                        
+                        if(crestScore>2){
+                        
+                            winner(crest);
+                        
+                            resetElements();
+                        }
+                        
                     }
-                }
+                    
             }
-                    for(let z=0; z<zero.length; z++){
+            
+                for(let z=0; z<zero.length; z++){
+                        
                       if(zero[z]==arr[i][j]){
-                          zeroCount++;
-                          if(zeroCount>2){
-                                  winner(zero);
+                          
+                          zeroScore++;
+                          
+                          if(zeroScore>2){
+                              
+                           winner(zero);
+                              
                            resetElements();
+                              
                          }
-                  }
+                          
+                      }
+                        
               }
+            
         }
+        
     }
+    
 }
 
 //winner
 
 function winner(Winner){
+    
     if(Winner==crest){
-        js__winCrest.classList.add('winner');
-        js__winCrest.classList.add('won');
+        
+        winCrest.classList.add('winner');
+        
+        winCrest.classList.add('won');
+        
         resetElements();
-    }if(Winner==zero){
-        js__winNought.classList.add('winner');
-        js__winNought.classList.add('won');
-        resetElements();
+        
     }
+    
+    if(Winner==zero){
+        
+        winNought.classList.add('winner');
+        
+        winNought.classList.add('won');
+        
+        resetElements();
+        
+    }
+    
 }
 
 //resetElements function
 
 function resetElements(){
-        crest=[];
-        zero=[];
-        ChangeOne=0;
-        gameStatus=false;
-        count();
-        js__firstPlayer.classList.remove('active');
-        js__secondPlayer.classList.remove('active');
+    
+        gameStatus = false;
+        
+        ChangeOne = 0;
+    
+        crest.splice(0,5);
+        
+        zero.splice(0,5);
+    
+        score();
+    
+        firstPlayer.classList.remove('active');
+    
+        secondPlayer.classList.remove('active');
+    
         for(let i=0;i<elements.length;i++){
+            
             elements[i].innerHTML=``;
+            
         }
+    
 }
 
 //score
 
-function count(){ 
-    js__scoreFirst.innerHTML=`${scoreF}`;
-    js__scoreSecond.innerHTML=`${scoreS}`;
-    if(js__winCrest.classList.contains('won')){
-        js__scoreFirst.innerHTML=`${++scoreF}`;
-        js__winCrest.classList.remove('won');
-    }if(js__winNought.classList.contains('won')){
-        js__scoreSecond.innerHTML=`${++scoreS}`;
-       js__winNought.classList.remove('won');
+function score(){ 
+    
+    scoreFirst.innerHTML=`${scoreF}`;
+    
+    scoreSecond.innerHTML=`${scoreS}`;
+    
+    if(winCrest.classList.contains('won')){
+        
+        scoreFirst.innerHTML=`${++scoreF}`;
+        
+        winCrest.classList.remove('won');
+        
     }
+    
+    if(winNought.classList.contains('won')){
+        
+        scoreSecond.innerHTML=`${++scoreS}`;
+        
+        winNought.classList.remove('won');
+        
+    }
+    
 }
-
 
 //field elements
 
-field.addEventListener('click', function(e){
-    const target = e.target;
+field.addEventListener('click', function({target}){
+    
         if(target.innerHTML==''){
+            
             if(ChangeOne==0){
-                js__winCrest.classList.remove('winner');
-                js__winNought.classList.remove('winner');
+                
+                winCrest.classList.remove('winner');
+                
+                winNought.classList.remove('winner');
+                
                crest.push(target.dataset.id);
+                
                 target.innerHTML='X';
-                js__firstPlayer.classList.remove('active');
-                js__secondPlayer.classList.add('active');
+                
+                firstPlayer.classList.remove('active');
+                
+                secondPlayer.classList.add('active');
+                
                 ChangeOne++;
+                
             }else if(ChangeOne==1){
-                js__winCrest.classList.remove('winner');
-                js__winNought.classList.remove('winner');
+                
+                winCrest.classList.remove('winner');
+                
+                winNought.classList.remove('winner');
+                
                 zero.push(target.dataset.id);
+                
                 target.innerHTML='O';
-                js__firstPlayer.classList.add('active');
-                js__secondPlayer.classList.remove('active');
+                
+                firstPlayer.classList.add('active');
+                
+                secondPlayer.classList.remove('active');
+                
                 ChangeOne--;
+                
             }    
+            
         }
+    
     checkWin(crest,zero);
+    
     });
 
 //chose move
 
-js__player.addEventListener('click', function(s){
-    const targets = s.target;
-        js__winCrest.classList.remove('winner');
-        js__winNought.classList.remove('winner');
-           if(gameStatus==false){
-        if(targets==js__firstPlayer){
-            players(0);
-        }else if(targets==js__secondPlayer){
-             players(1);
+players.addEventListener('click', function({target}){
+    
+        winCrest.classList.remove('winner');
+    
+        winNought.classList.remove('winner');
+    
+    if(gameStatus==false){
+               
+        if(target==firstPlayer){
+            
+            player(0);
+            
+        }else if(target==secondPlayer){
+            
+             player(1);
+            
         }
+               
     }
+    
     gameStatus=true;
+    
 });
 
 //restart game
 
-js__restartGame.addEventListener('click',function(e){
+restartGame.addEventListener('click',function(e){
+    
         resetElements();
-        js__winCrest.classList.remove('winner');
-        js__winNought.classList.remove('winner');
+    
+        winCrest.classList.remove('winner');
+    
+        winNought.classList.remove('winner');
+    
 });
+
+
+
+
+
+
