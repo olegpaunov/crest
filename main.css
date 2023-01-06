@@ -4,6 +4,7 @@
     text-decoration: none;
     list-style: none;
 }
+
 body,html{
     padding: 10px;
     height: 100%;
@@ -13,10 +14,12 @@ body,html{
     font-size: 20px;
     background: #00ab8e;
 }
+
 .container{
     width: 1200px;
     margin: 0 auto;
 }
+
 .wrapper{
     display: flex;
     min-height: 100%;
@@ -30,11 +33,14 @@ body,html{
     margin: 50px 0;
     font-size: 30px;
 }
+
 .player__row{
+    width: auto;
     display: flex;
     justify-content: space-around;
     margin:  0 0 50px 0;
 }
+
 .player{
     display: flex;
     justify-content: space-between;
@@ -48,39 +54,48 @@ body,html{
     border-bottom: none;
     background: #ffffff;
 }
+
 .menu__title{
     font-size: 40px;
     letter-spacing: 5px;
 }
+
 .header__menu__row{
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
+
 .lang{
     display: flex;
     align-items: center;
 }
+
 .lang__text{
     margin: 0 0 0 10px;
 }
+
 .picture{
     width: 40px;
     height: 40px;
 }
+
 .pictures{
     padding: 55px;
     width: 40px;
     height: 40px;
 }
+
 .footer{
     margin: 50px 0 0 0;
 }
+
 .footer__row{
     display: flex;
     justify-content: center;
 }
-button{
+
+.button__Restart{
     align-items: center;
     width: 500px;
     text-transform: uppercase;
@@ -88,14 +103,17 @@ button{
     font-family: monospace;
     letter-spacing: 2px;
     height: 70px;
+    margin: -50px 0 0 0;
     border-radius: 15px;
     background: #ffffff;
     display: flex;
     justify-content: center;   
 }
+
 .field{
     margin: 0 0 350px 0;
 }
+
 .field__row{
     display: flex;
     flex-wrap: wrap;
@@ -105,6 +123,7 @@ button{
     margin: 0 auto;
     height: 50px;
 }
+
 .element{
     flex: 0 1 25%;
     margin: 5px;
@@ -115,29 +134,34 @@ button{
     border: 1px #ffffff solid;    
     display:flex;
 }
+
 .show{
     background: #0000ff;
 }
+
 .active{
     transition: 0.4s;
     border-bottom: 3px solid #000000;
 }
+
 .win__Crest{
     display: none;
 }
+
 .win__Nought{
     display: none;
 }
+
 .winner{
     display: block;
     margin: 10px 430px;
     width: 180px;
+    border-radius: 50px;
     height: 70px;
     color: #000000;
     font-family: monospace;
     font-size: 25px;
     text-transform: uppercase;
-    border-radius: 15px;
     border: 3px solid #000000;
     background: #ffffffff;
     display: flex;
@@ -145,100 +169,127 @@ button{
     align-items: center;
     position: absolute;
 }
+
 @media (max-width:1200px){
+    
     .container{
         max-width: 900px;
     }
+    
     .player{
         width: 200px;
         height: 40px;
     }
-    button{
-    align-items: center;
-    width: 250px;
-    text-transform: uppercase;
-    font-size: 20px;   
-    font-family: monospace;
-    letter-spacing: 2px;
-    height: 70px;
-    border-radius: 15px;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;   
-}
+    
+    .button__Restart{
+        align-items: center;
+        width: 250px;
+        text-transform: uppercase;
+        font-size: 20px;   
+        font-family: monospace;
+        letter-spacing: 2px;
+        height: 70px;
+        border-radius: 15px;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;   
+    }
+    
     .winner{
-        margin: 20px 0 0 0;
+        margin: 10px 0 0 0;
         width: 140px;
+        border-radius: 50px;
         font-size: 20px;
     }
+    
     .element{
         height: 95px;
     }
+    
 }
+
 @media (max-width:900px){
+    
     .container{
         max-width: 700px;
+        margin: 0 auto;
     }
+    
     .player{
         width: 150px;
         height: 30px;
     }
-    button{
-    align-items: center;
-    width: 100px;
-    text-transform: uppercase;
-    font-size: 15px;   
-    font-family: monospace;
-    letter-spacing: 2px;
-    height: 70px;
-    border-radius: 15px;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;   
-}
+    
+    .button__Restart{
+        margin: -100px 0 0 0;
+        width: 200px;
+        text-transform: uppercase;
+        font-size: 18px;   
+        font-family: monospace;
+        letter-spacing: 2px;
+        height: 60px;
+        border-radius: 15px;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;   
+    }
+    
     .winner{
+        margin: 15px 0 0 0;
         width: 100px;
-        font-size: 7px;
-        padding:10px;
+        font-size: 10px;
         height: 40px;
     }
+    
     .element{
         height: 95px;
     }
+    
     .field__row{
         width: 450px;
     }
+    
 }
+
 @media (max-width:700px){
+    
     .container{
         max-width: 500px;
+        margin: 0 auto;
     }
+    
+    .player__row{
+        max-width: 500px;
+    }
+    
     .player{
         width: 100px;
-        height: 50px;
+        height: 30px;
     }
+    
     .field__row{
         width: 400px;
     }
-    button{
-    align-items: center;
-    width: 150px;
-    text-transform: uppercase;
-    font-size: 10px;   
-    font-family: monospace;
-    margin: 0;
-    letter-spacing: 2px;
-    height: 70px;
-    border-radius: 15px;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;   
-}
+    
+    .button__Restart{
+        margin: -100px 0 0 0;
+        width: 150px;
+        text-transform: uppercase;
+        font-size: 13px;   
+        font-family: monospace;
+        letter-spacing: 2px;
+        height: 50px;
+        border-radius: 20px;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;   
+    }
+    
     .winner{
-        height: 60px;
-        width: 60px;
-        padding:10px ;
-        font-size: 7px;
+        height: 50px;
+        margin: 10px 0 0 0;
+        width: 80px;
+        font-size: 10px;
     }
     
 }
