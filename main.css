@@ -16,7 +16,7 @@ body,html{
 }
 
 .container{
-    width: 1200px;
+    width: 1400px;
     margin: 0 auto;
 }
 
@@ -95,7 +95,7 @@ body,html{
     justify-content: center;
 }
 
-.button__Restart{
+.button-restart{
     align-items: center;
     width: 500px;
     text-transform: uppercase;
@@ -144,11 +144,15 @@ body,html{
     border-bottom: 3px solid #000000;
 }
 
-.win__Crest{
+.win__crest{
     display: none;
 }
 
-.win__Nought{
+.win__nought{
+    display: none;
+}
+
+.draw{
     display: none;
 }
 
@@ -181,7 +185,7 @@ body,html{
         height: 40px;
     }
     
-    .button__Restart{
+    .button-restart{
         align-items: center;
         width: 250px;
         text-transform: uppercase;
@@ -220,7 +224,7 @@ body,html{
         height: 30px;
     }
     
-    .button__Restart{
+    .button-restart{
         margin: -100px 0 0 0;
         width: 200px;
         text-transform: uppercase;
@@ -271,7 +275,7 @@ body,html{
         width: 400px;
     }
     
-    .button__Restart{
+    .button-restart{
         margin: -100px 0 0 0;
         width: 150px;
         text-transform: uppercase;
