@@ -1,299 +1,144 @@
 *{
-    margin: 0;
     padding: 0;
+    margin: 0;
     text-decoration: none;
     list-style: none;
 }
 
-body,html{
-    padding: 10px;
-    height: 100%;
-    color: #ffffff;
-    font-family: monospace;
-    text-transform: uppercase;
-    font-size: 20px;
-    background: #00ab8e;
+body{
+    background: #ff5349;
 }
 
-.container{
-    width: 1400px;
+.container{ 
+    max-width: 1100px;
     margin: 0 auto;
 }
 
-.wrapper{
-    display: flex;
-    min-height: 100%;
-    flex-direction: column;
-    padding: 30px 30px;
+.header{
+    background: #ff5349;
+    justify-content: center;
 }
 
-.content__title{
+.todolist__row{
     display: flex;
     justify-content: center;
-    margin: 50px 0;
-    font-size: 30px;
+    flex-direction: column;
+    margin: 0 0 3px 0;
 }
 
-.player__row{
-    width: auto;
+.ToDoList__title{
+    justify-content: center;
     display: flex;
-    justify-content: space-around;
-    margin:  0 0 50px 0;
+    font-family: monospace;
+    padding: 60px 0 30px 0 ;
+    font-weight: 900;
+    font-size: 30px;
+    color: #ffffff;
 }
 
-.player{
+.todolist__button{
+    border: none;
+    background: #B4B4B4;
+    width: 300px;
+    padding: 16px 40px;
+    font-family: monospace;
+    margin: 0 0 0 -4px;
+    font-size: 20px;
+    color: #505050;
+}
+
+.ToDoList__form{
+    display:flex;
+    justify-content: center;
+    margin: 0 0 90px 0;
+}
+
+.todolist__text{
+    border: none;
+    font-family: monospace;
+    padding: 16px ;
+    font-size: 20px;
+    width: 700px;
+}
+
+.todolist__button:hover{
+    transition: 0.4s;
+    background: #7A6B6B;
+    color: #F0EEEE;
+}
+
+.ToDoList__row{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.element__row:hover{
+    background: #ff5349;
+    color: #ffffff;
+    border-radius: 40px;
+}
+
+.element__row{
+    padding: 0 40px;
+    background: #bfbfbf;
+    width: 100%;
+    height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    border-radius: 30px;
-    color: #000000;
-    width: 300px;
-    height: 50px;
-    border: 4px #808080 solid;
-    border-bottom: none;
-    background: #ffffff;
-}
-
-.menu__title{
-    font-size: 40px;
-    letter-spacing: 5px;
-}
-
-.header__menu__row{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.lang{
-    display: flex;
-    align-items: center;
-}
-
-.lang__text{
-    margin: 0 0 0 10px;
-}
-
-.picture{
-    width: 40px;
-    height: 40px;
-}
-
-.pictures{
-    padding: 55px;
-    width: 40px;
-    height: 40px;
-}
-
-.footer{
-    margin: 50px 0 0 0;
-}
-
-.footer__row{
-    display: flex;
-    justify-content: center;
-}
-
-.button-restart{
-    align-items: center;
-    width: 500px;
-    text-transform: uppercase;
-    font-size: 30px;   
+    font-size: 30px;
     font-family: monospace;
-    letter-spacing: 2px;
-    height: 70px;
-    margin: -50px 0 0 0;
+    border: 5px #ffffff solid;
+    margin-bottom: 20px;
     border-radius: 15px;
-    background: #ffffff;
+}
+
+.element__row:hover{
+    background: #808080;
+}
+
+.active:hover{
+    background: #4d4d4d;
+    transition: 0.3s;
+    color: #ffffff;
+    text-decoration: line-through;
+}
+
+.element__text{
     display: flex;
-    justify-content: center;   
-}
-
-.field{
-    margin: 0 0 350px 0;
-}
-
-.field__row{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 500px;
-    margin: 50px 0;
-    margin: 0 auto;
-    height: 50px;
-}
-
-.element{
-    flex: 0 1 25%;
-    margin: 5px;
-    justify-content: center;
+    width: auto;
     align-items: center;
-    border-radius: 15px;
-    height: 110px;
-    border: 1px #ffffff solid;    
-    display:flex;
-}
-
-.show{
-    background: #0000ff;
 }
 
 .active{
-    transition: 0.4s;
-    border-bottom: 3px solid #000000;
+    transition: 0.9s;
+    background: #4d4d4d;
+    color: #ffffff;
+    text-decoration: line-through;
 }
 
-.win__crest{
-    display: none;
+.img{
+    width: 40px;
+    height: 40px;
+    padding: 20px 30px;
 }
 
-.win__nought{
-    display: none;
-}
-
-.draw{
-    display: none;
-}
-
-.winner{
-    display: block;
-    margin: 10px 430px;
-    width: 180px;
-    border-radius: 50px;
-    height: 70px;
-    color: #000000;
-    font-family: monospace;
-    font-size: 25px;
-    text-transform: uppercase;
-    border: 3px solid #000000;
-    background: #ffffffff;
+.form__row{
     display: flex;
-    justify-content: center;
     align-items: center;
-    position: absolute;
 }
 
-@media (max-width:1200px){
-    
-    .container{
-        max-width: 900px;
-    }
-    
-    .player{
-        width: 200px;
-        height: 40px;
-    }
-    
-    .button-restart{
-        align-items: center;
-        width: 250px;
-        text-transform: uppercase;
-        font-size: 20px;   
-        font-family: monospace;
-        letter-spacing: 2px;
-        height: 70px;
-        border-radius: 15px;
-        background: #ffffff;
-        display: flex;
-        justify-content: center;   
-    }
-    
-    .winner{
-        margin: 10px 0 0 0;
-        width: 140px;
-        border-radius: 50px;
-        font-size: 20px;
-    }
-    
-    .element{
-        height: 95px;
-    }
-    
+.js-resetButton{
+    border: none;
+    border-left: 2px #000000 solid;
+    background: #B4B4B4;
+    padding: 4px 20px;
+    font-family: monospace;
+    font-size: 20px;
+    color: #505050;
 }
 
-@media (max-width:900px){
-    
-    .container{
-        max-width: 700px;
-        margin: 0 auto;
-    }
-    
-    .player{
-        width: 150px;
-        height: 30px;
-    }
-    
-    .button-restart{
-        margin: -100px 0 0 0;
-        width: 200px;
-        text-transform: uppercase;
-        font-size: 18px;   
-        font-family: monospace;
-        letter-spacing: 2px;
-        height: 60px;
-        border-radius: 15px;
-        background: #ffffff;
-        display: flex;
-        justify-content: center;   
-    }
-    
-    .winner{
-        margin: 15px 0 0 0;
-        width: 100px;
-        font-size: 10px;
-        height: 40px;
-    }
-    
-    .element{
-        height: 95px;
-    }
-    
-    .field__row{
-        width: 450px;
-    }
-    
-}
 
-@media (max-width:700px){
-    
-    .container{
-        max-width: 500px;
-        margin: 0 auto;
-    }
-    
-    .player__row{
-        max-width: 500px;
-    }
-    
-    .player{
-        width: 100px;
-        height: 30px;
-    }
-    
-    .field__row{
-        width: 400px;
-    }
-    
-    .button-restart{
-        margin: -100px 0 0 0;
-        width: 150px;
-        text-transform: uppercase;
-        font-size: 13px;   
-        font-family: monospace;
-        letter-spacing: 2px;
-        height: 50px;
-        border-radius: 20px;
-        background: #ffffff;
-        display: flex;
-        justify-content: center;   
-    }
-    
-    .winner{
-        height: 50px;
-        margin: 10px 0 0 0;
-        width: 80px;
-        font-size: 10px;
-    }
-    
-}
+
