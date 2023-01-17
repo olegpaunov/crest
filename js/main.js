@@ -1,349 +1,140 @@
-//variables 
-    const field = document.getElementById('field');
+//All variables
 
-    let ChangeOne = 0 ;
+const buttonAddElement = document.querySelector('.js-buttonadd');
 
-    const players = document.querySelector('.js-players');
+const list = document.querySelector('.js-ToDoListRow');
 
-    const firstPlayer = document.getElementById('first');
+const forms = document.querySelector('.form__row')
 
-    const secondPlayer = document.getElementById('second');
+const form = document.forms.main;
 
-    const scoreFirst = players.querySelector('.js-scoreFirst');
+const inputName = form.input;
 
-    const scoreSecond = players.querySelector('.js-scoreSecond');
+const textOfField = [];
 
-    const restartGame = document.querySelector('.js-restartGame');  
+let i = 0;
 
-    const winCrest = document.querySelector('.js-crest');
+//All function
 
-    const winNought = document.querySelector('.js-nought');
+function changeTextOfField(value){
     
-    const draw = players.querySelector('.js-draw');
-
-    let gameStatus = false;
-
-    let scoreF = 0;
-
-    let scoreS = 0;
-
-    let busy = true;
-
-    const crest = [];
-
-    const zero = [];
-
-    const arr = [
-            [0,1,2],
-        
-            [3,4,5],
-        
-            [6,7,8],
-        
-            [0,4,8],
-        
-            [2,4,6],
-        
-            [0,3,6],
-        
-            [1,4,7],
-        
-            [2,5,8]
-    ]; 
-
-//this function help variable elements
-
-    createField();
-
-    const elements = [...field.querySelectorAll('.element')]; 
-
-//create field
-
-function createField(){
-    
-         for(let i=0; i<9; i++){
-             
-            const wrapper = document.createElement('div');
-             
-            wrapper.setAttribute('data-id', i);
-             
-            wrapper.classList.add('element');
-             
-            field.append(wrapper);
-             
-         }
-    
-    score();
+    textOfField.push(value);
     
 }
 
-//change player move
- 
-function player(i){
+function clearTextOfField(){
     
-        if(i == 0){
-            
-            firstPlayer.classList.add('active');
-            
-            secondPlayer.classList.remove('active');
-            
-            ChangeOne = i;
-            
-            i++;
-            
-        } else if(i == 1){
+    for(let j = 0; j < textOfField.length; j++){
         
-            firstPlayer.classList.remove('active');
+        for(let i = 0; i < textOfField.length;){
         
-            secondPlayer.classList.add('active');
-        
-            ChangeOne = i;
-        
-            i--;   
-        
-        }
-    }
-
-// checkWin
-            
-function checkMove(crest, zero){
-    
-    for(let i = 0; i < arr.length; i++){
-        
-            let crestScore=0;
-        
-            let zeroScore=0;
-        
-        for(let j = 0; j < arr[i].length; j++){
-            
-                for(let k=0; k<crest.length; k++){
-                    
-                    if(crest[k]==arr[i][j]){    
-                        
-                            crestScore++;
-                        
-                        if(crestScore>2){
-                        
-                            CheckWin(crest);
-                        
-                            resetElements();
-                        }
-                        
-                    }
-                    
-            }
-            
-                for(let z=0; z<zero.length; z++){
-                        
-                      if(zero[z]==arr[i][j]){
-                          
-                          zeroScore++;
-                          
-                          if(zeroScore>2){
-                              
-                           CheckWin(zero);
-                              
-                           resetElements();
-                              
-                         }
-                          
-                      }
-                        
-              }
-            
-            //Make draw
-            
-             if(zero.length==4){
-                  checkDraw();
-              }
+            textOfField.shift(textOfField[j]);
             
         }
         
     }
     
-}
-
-//winner
-
-function CheckWin(winer){
-    
-    if(winer==crest){
-        
-        winCrest.classList.add('winner');
-        
-        winCrest.classList.add('won');
-        
-        resetElements();
-        
-        return;
-        
-    }
-    
-    if(winer==zero){
-
-        winNought.classList.add('winner');
-        
-        winNought.classList.add('won');
-        
-        resetElements();
-        
-        return;
-        
-    }
-    
-    console.log(1);
+    inputName.value = '';
     
 }
-
-//resetElements function
 
 function resetElements(){
     
-        gameStatus = false;
+    if(i == 0){
         
-        ChangeOne = 0;
-    
-        crest.splice(0,5);
-    
+        const removeAll = document.createElement('div');
+
+        removeAll.innerHTML = `<button class="js-resetButton">Reset All</button>`;
+         
+        removeAll.classList.add('removeAll');
+         
+        forms.append(removeAll); 
         
-        zero.splice(0,5);
-    
-        score();
-    
-        firstPlayer.classList.remove('active');
-    
-        secondPlayer.classList.remove('active');
-    
-        for(let i=0;i<elements.length;i++){
-            
-            elements[i].innerHTML=``;
-            
-        }
-    
-}
-
-//draw
-
-function checkDraw(){
-    draw.classList.add('winner');
-    resetElements();
-}
-
-//score
-
-function score(){ 
-    
-    scoreFirst.innerHTML=`${scoreF}`;
-    
-    scoreSecond.innerHTML=`${scoreS}`;
-    
-    if(winCrest.classList.contains('won')){
-        
-        scoreFirst.innerHTML=`${++scoreF}`;
-        
-        winCrest.classList.remove('won');
+        i++;
         
     }
+       
+}
+
+function elementAdd(){
     
-    if(winNought.classList.contains('won')){
+    const string = textOfField.pop();
+    
+    if(!string){
         
-        scoreSecond.innerHTML=`${++scoreS}`;
+        alert('Field is empty');
         
-        winNought.classList.remove('won');
-        
+     }else{
+         
+        const elementOfList = document.createElement('div');
+         
+        elementOfList.classList.add('element__row');
+    
+        list.append(elementOfList);
+         
+        elementOfList.innerHTML = `<div class="element__text"> ${string}</div>`;
+
+        const crest = document.createElement("div");
+         
+        crest.classList.add('crest');
+         
+        crest.innerHTML = `<img class="img js-elementbutton" src="img/crest.png" alt="">`;
+         
+        elementOfList.append(crest);
+         
+        resetElements();
+         
+        clearTextOfField();
+         
     }
     
 }
 
-//field elements
+function setStyle(target){
+    
+    target.classList.toggle('active');
+    
+}
 
-field.addEventListener('click', function({target}){
-    
-        if(target.innerHTML==''){
-            
-            if(ChangeOne==0){
-                
-                winCrest.classList.remove('winner');
-                
-                winNought.classList.remove('winner');
-                
-                draw.classList.remove('winner');
-                
-               crest.push(target.dataset.id);
-                
-                target.innerHTML='X';
-                
-                firstPlayer.classList.remove('active');
-                
-                secondPlayer.classList.add('active');
-                
-                ChangeOne++;
-                
-            }else if(ChangeOne==1){
-                
-                winCrest.classList.remove('winner');
-                
-                winNought.classList.remove('winner');
-                
-                draw.classList.remove('winner');
-                
-                zero.push(target.dataset.id);
-                
-                target.innerHTML='O';
-                
-                firstPlayer.classList.add('active');
-                
-                secondPlayer.classList.remove('active');
-                
-                ChangeOne--;
-                
-            }    
-            
-        }
-    
-    checkMove(crest,zero);
-    
-    });
+function remove(target){
 
-//chose move
+    target.remove();
+    
+}
 
-players.addEventListener('click', function({target}){
+//All events
+
+inputName.addEventListener("input", function(e){
     
-        winCrest.classList.remove('winner');
-    
-        winNought.classList.remove('winner');
-        
-        draw.classList.remove('winner');
-    
-    if(gameStatus==false){
-               
-        if(target==firstPlayer){
-            
-            player(0);
-            
-        }else if(target==secondPlayer){
-            
-             player(1);
-            
-        }
-               
-    }
-    
-    gameStatus=true;
+   changeTextOfField(inputName.value);
     
 });
 
-//restart game
+buttonAddElement.addEventListener('click', function(e){
+    
+    e.preventDefault();  
+    
+    elementAdd();
+    
+});
 
-restartGame.addEventListener('click',function(e){
+list.addEventListener('click', function({target}){
     
-        resetElements();
+    const crest = list.querySelector('.js-elementbutton');
+
+    const element = list.querySelector('.element__row');
     
-        winCrest.classList.remove('winner');
-    
-        winNought.classList.remove('winner');
+    if(target.classList.contains('element__row')){
         
-        draw.classList.remove('winner');
+        setStyle(target)
+        
+    }
+    
+    if(target.classList.contains('js-elementbutton')){
+        
+        remove(target.closest('.element__row'))
+    
+    }
     
 });
 
