@@ -1,8 +1,6 @@
 //variables 
     const field = document.getElementById('field');
 
-    let ChangeOne = 0 ;
-
     const players = document.querySelector('.js-players');
 
     const firstPlayer = document.getElementById('first');
@@ -22,6 +20,8 @@
     const draw = players.querySelector('.js-draw');
 
     let gameStatus = false;
+
+    let ChangeOne = 0 ;
 
     let scoreF = 0;
 
@@ -116,13 +116,13 @@ function checkMove(crest, zero){
         
         for(let j = 0; j < arr[i].length; j++){
             
-                for(let k=0; k<crest.length; k++){
+                for(let k=0; k < crest.length; k++){
                     
-                    if(crest[k]==arr[i][j]){    
+                    if(crest[k] == arr[i][j]){    
                         
                             crestScore++;
                         
-                        if(crestScore>2){
+                        if(crestScore > 2){
                         
                             CheckWin(crest);
                         
@@ -133,13 +133,13 @@ function checkMove(crest, zero){
                     
             }
             
-                for(let z=0; z<zero.length; z++){
+                for(let z=0; z < zero.length; z++){
                         
-                      if(zero[z]==arr[i][j]){
+                      if(zero[z] == arr[i][j]){
                           
                           zeroScore++;
                           
-                          if(zeroScore>2){
+                          if(zeroScore > 2){
                               
                            CheckWin(zero);
                               
@@ -153,8 +153,16 @@ function checkMove(crest, zero){
             
             //Make draw
             
-             if(zero.length==4){
+             if(zero.length == 4){
+                 
                   checkDraw();
+                 
+              }
+            
+             if(crest.length == 4){
+                 
+                  checkDraw();
+                 
               }
             
         }
@@ -167,7 +175,7 @@ function checkMove(crest, zero){
 
 function CheckWin(winer){
     
-    if(winer==crest){
+    if(winer == crest){
         
         winCrest.classList.add('winner');
         
@@ -179,7 +187,7 @@ function CheckWin(winer){
         
     }
     
-    if(winer==zero){
+    if(winer == zero){
 
         winNought.classList.add('winner');
         
@@ -190,8 +198,6 @@ function CheckWin(winer){
         return;
         
     }
-    
-    console.log(1);
     
 }
 
@@ -204,7 +210,6 @@ function resetElements(){
         ChangeOne = 0;
     
         crest.splice(0,5);
-    
         
         zero.splice(0,5);
     
@@ -214,9 +219,9 @@ function resetElements(){
     
         secondPlayer.classList.remove('active');
     
-        for(let i=0;i<elements.length;i++){
+        for(let i=0; i<elements.length; i++){
             
-            elements[i].innerHTML=``;
+            elements[i].innerHTML = ``;
             
         }
     
@@ -225,21 +230,24 @@ function resetElements(){
 //draw
 
 function checkDraw(){
+    
     draw.classList.add('winner');
+    
     resetElements();
+    
 }
 
 //score
 
 function score(){ 
     
-    scoreFirst.innerHTML=`${scoreF}`;
-    
-    scoreSecond.innerHTML=`${scoreS}`;
+    scoreFirst.innerHTML= `${scoreF}`;
+     
+    scoreSecond.innerHTML= `${scoreS}`;
     
     if(winCrest.classList.contains('won')){
         
-        scoreFirst.innerHTML=`${++scoreF}`;
+        scoreFirst.innerHTML= `${++scoreF}`;
         
         winCrest.classList.remove('won');
         
@@ -247,7 +255,7 @@ function score(){
     
     if(winNought.classList.contains('won')){
         
-        scoreSecond.innerHTML=`${++scoreS}`;
+        scoreSecond.innerHTML= `${++scoreS}`;
         
         winNought.classList.remove('won');
         
@@ -259,9 +267,9 @@ function score(){
 
 field.addEventListener('click', function({target}){
     
-        if(target.innerHTML==''){
+        if(target.innerHTML == ''){
             
-            if(ChangeOne==0){
+            if(ChangeOne == 0){
                 
                 winCrest.classList.remove('winner');
                 
@@ -279,7 +287,7 @@ field.addEventListener('click', function({target}){
                 
                 ChangeOne++;
                 
-            }else if(ChangeOne==1){
+            }else if(ChangeOne == 1){
                 
                 winCrest.classList.remove('winner');
                 
@@ -315,13 +323,13 @@ players.addEventListener('click', function({target}){
         
         draw.classList.remove('winner');
     
-    if(gameStatus==false){
+    if(gameStatus == false){
                
-        if(target==firstPlayer){
+        if(target == firstPlayer){
             
             player(0);
             
-        }else if(target==secondPlayer){
+        }else if(target == secondPlayer){
             
              player(1);
             
@@ -329,7 +337,7 @@ players.addEventListener('click', function({target}){
                
     }
     
-    gameStatus=true;
+    gameStatus  = true;
     
 });
 
@@ -346,3 +354,4 @@ restartGame.addEventListener('click',function(e){
         draw.classList.remove('winner');
     
 });
+
